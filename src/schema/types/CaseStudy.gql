@@ -1,0 +1,71 @@
+type CaseStudy {
+  id: ID!
+  name: String!
+  description: String!
+  slug: String!
+  text: String!
+  imageURL: String
+  postedAt: Date
+  isActive: Boolean!
+  createdAt: Date!
+  updatedAt: Date!
+  technologies: [Technology!]!
+  industries: [Industry!]!
+}
+
+type CaseStudyMutation {
+  create(input: CaseStudyCreateInput!): CaseStudy!
+  update(id: ID!, input: CaseStudyUpdateInput! = {}, industries: [ID!]!): CaseStudy!
+  delete(id: ID!): ID!
+  addIndustryAndTechnologyToCaseStudy(id: ID!, industries: [ID!], technologies: [ID!]): CaseStudy!
+}
+
+input CaseStudyCreateInput {
+  name: String!
+  description: String!
+  slug: String!
+  text: String!
+  imageURL: String
+}
+
+input CaseStudyUpdateInput {
+  name: String
+  description: String
+  slug: String
+  text: String
+  imageURL: String
+  isActive: Boolean
+  postedAt: Date
+  image: Upload
+}
+
+input CaseStudiesInput {
+  page: Int! = 1
+  limit: Int! = 10
+  sort: CaseStudySortEnum! = CREATED_AT_ASC
+  filter: CaseStudyFilter! = {}
+}
+
+enum CaseStudySortEnum {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  NAME_ASC
+  NAME_DESC
+  POSTED_AT_ASC
+  POSTED_AT_DESC
+}
+
+input CaseStudyFilter {
+  name: String
+  description: String
+  slug: String
+  text: String
+  imageURL: String
+}
+
+type CaseStudiesWithPagination {
+  items: [CaseStudy!]!
+  pagination: Pagination!
+}

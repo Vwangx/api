@@ -1,0 +1,10 @@
+type Pagination {
+  totalItems: Int!
+  totalPages: Int!
+  page: Int!
+  perPage: Int!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  previousPage: Int
+  nextPage: Int
+}

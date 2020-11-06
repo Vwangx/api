@@ -1,0 +1,95 @@
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  position: String!
+  bio: String!
+  avatarURL: String
+  isVerified: Boolean!
+  createdAt: Date!
+  updatedAt: Date!
+  image: Upload,
+  posts: [Post!]!
+}
+
+type UserWithToken {
+  user: User!
+  token: String
+}
+
+type UsersWithPagination {
+  items: [User!]!
+  pagination: Pagination!
+}
+
+type UserMutation {
+  create(input: UserCreateInput!): User!
+  update(id: ID!, input: UserUpdateInput! = {}): User!
+  delete(id: ID!): ID!
+  login(input: UserLoginInput!): UserWithToken!
+  renewToken: UserWithToken!
+  currentUserUpdate(input: CurrentUserUpdateInput!): User!
+}
+
+input CurrentUserUpdateInput {
+  email: String
+  name: String
+  position: String
+  bio: String
+  avatarURL: String
+  image: Upload
+}
+
+input UserLoginInput {
+  email: String!
+  password: String!
+}
+
+input UserCreateInput {
+  name: String!
+  email: String!
+  password: String!
+  position: String!
+  bio: String
+  image: Upload
+}
+
+input UserUpdateInput {
+  name: String
+  email: String
+  password: String
+  position: String
+  bio: String
+  image: Upload
+}
+
+input UsersInput {
+  page: Int! = 1
+  limit: Int! = 10
+  sort: UserSortEnum! = CREATED_AT_ASC
+  filter: UserFilter! = {}
+}
+
+enum UserSortEnum {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  EMAIL_ASC
+  EMAIL_DESC
+  NAME_ASC
+  NAME_DESC
+  IS_VERIFIED_ASC
+  IS_VERIFIED_DESC
+  POSITION_ASC
+  POSITION_DESC
+}
+
+input UserFilter {
+  email: String
+  name: String
+  position: String
+  bio: String
+  avatarURL: String
+  isVerified: Boolean
+}

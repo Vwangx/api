@@ -1,0 +1,2 @@
+directive @auth on FIELD_DEFINITION
+directive @roles(require: String!) on FIELD_DEFINITION

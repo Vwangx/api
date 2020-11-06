@@ -1,0 +1,14 @@
+type Mutation {
+  user: UserMutation!
+  post: PostMutation!
+  office: OfficeMutation!
+  vacancy: VacancyMutation!
+  client: ClientMutation!
+  request: RequestMutation!
+  technology: TechnologyMutation!
+  caseStudy: CaseStudyMutation!
+  industry: IndustryMutation!
+  vacancyRequest: VacancyRequestMutation!
+
+  uploadFile(file: Upload!): File
+}

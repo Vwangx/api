@@ -1,0 +1,74 @@
+type Post {
+  id: ID!
+  name: String!
+  description: String!
+  slug: String!
+  text: String!
+  imageURL: String
+  postedAt: Date
+  user: User
+  industries: [Industry!]!
+  technologies: [Technology!]!
+}
+
+type PostsWithPagination {
+  items: [Post!]!
+  pagination: Pagination!
+}
+
+type PostMutation {
+  create(input: PostCreateInput!): Post!
+  update(id: ID!, input: PostUpdateInput!): Post!
+  delete(id: ID!): ID!
+  changeUser(id: ID!, input: PostChangeUserInput!): Post!
+  removeUser(id: ID!): ID!
+  changeIndustries(id: ID!, input: PostChangeIndustriesInput!): Post!
+  removeOneIndustry(id: ID!, indusrtyId: [String!]!): ID!
+}
+
+input PostCreateInput {
+  name: String!
+  description: String!
+  slug: String!
+  text: String!
+  imageURL: String
+}
+
+input PostUpdateInput {
+  name: String
+  description: String
+  slug: String
+  text: String
+  imageURL: String
+  postedAt: Date
+  image: Upload
+}
+
+input PostChangeUserInput {
+  user: String
+}
+
+input PostChangeIndustriesInput {
+  industries: [ID!]!
+}
+
+input PostsInput {
+  page: Int! = 1
+  limit: Int! = 10
+  sort: PostSortEnum! = CREATED_AT_ASC
+  filter: PostFilter! = {}
+}
+
+enum PostSortEnum {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+}
+
+input PostFilter {
+  name: String
+  description: String
+  slug: String
+  text: String
+}

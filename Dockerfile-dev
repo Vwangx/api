@@ -1,0 +1,11 @@
+FROM node:13-alpine
+
+ENV NODE_ENV development
+
+WORKDIR /usr/app
+
+COPY . .
+
+RUN yarn install
+
+CMD ["yarn", "nodemon"]

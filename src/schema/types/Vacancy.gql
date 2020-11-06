@@ -1,0 +1,68 @@
+type Vacancy {
+  id: ID!
+  name: String!
+  description: String!
+  text: String!
+  location: String!
+  isActive: Boolean!
+  IsHot: Boolean!
+}
+
+type VacancyMutation {
+  create(input: VacancyCreateInput!): Vacancy!
+  update(id: ID!, input: VacancyUpdateInput! = {}): Vacancy!
+  delete(id: ID!): ID!
+}
+
+input VacancyCreateInput {
+  name: String!
+  description: String!
+  text: String!
+  location: String!
+  isActive: Boolean
+  isHot: Boolean
+}
+
+input VacancyUpdateInput {
+  name: String
+  description: String
+  text: String
+  location: String
+  isActive: Boolean
+  isHot: Boolean
+}
+
+input VacanciesInput {
+  page: Int! = 1
+  limit: Int! = 10
+  sort: VacancySortEnum! = CREATED_AT_ASC
+  filter: VacancyFilter! = {}
+}
+
+enum VacancySortEnum {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  NAME_ASC
+  NAME_DESC
+  IS_ACTIVE_ASC
+  IS_ACTIVE_DESC
+  IS_HOT_ASC
+  IS_HOT_DSC
+}
+
+input VacancyFilter {
+  id: ID
+  name: String
+  description: String
+  text: String
+  location: String
+  isActive: Boolean
+  IsHot: Boolean
+}
+
+type VacanciesWithPagination {
+  items: [Vacancy!]!
+  pagination: Pagination!
+}

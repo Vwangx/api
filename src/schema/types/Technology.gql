@@ -1,0 +1,50 @@
+type Technology {
+  id: ID!
+  name: String!
+  slug: String!
+  caseStudies: [CaseStudy!]!
+  posts: [Post!]!
+}
+
+type TechnologyMutation {
+  create(input: TechnologyCreateInput!): Technology!
+  update(id: ID!, input: TechnologyUpdateInput! = {}): Technology!
+  delete(id: ID!): ID!
+}
+
+input TechnologyCreateInput {
+  name: String!
+  slug: String!
+}
+
+input TechnologyUpdateInput {
+  name: String
+  slug: String
+}
+
+input TechnologiesInput {
+  page: Int! = 1
+  limit: Int! = 10
+  sort: TechnologySortEnum! = CREATED_AT_ASC
+  filter: TechnologyFilter! = {}
+}
+
+enum TechnologySortEnum {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  NAME_ASC
+  NAME_DESC
+}
+
+input TechnologyFilter {
+  id: ID
+  name: String
+  slug: String
+}
+
+type TechnologiesWithPagination {
+  items: [Technology!]!
+  pagination: Pagination!
+}

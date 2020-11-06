@@ -1,0 +1,53 @@
+type Industry {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String!
+  caseStudies: [CaseStudy!]!
+  posts: [Post!]!
+}
+
+type IndustryMutation {
+  create(input: IndustryCreateInput!): Industry!
+  update(id: ID!, input: IndustryUpdateInput! = {}): Industry!
+  delete(id: ID!): ID!
+}
+
+input IndustryCreateInput {
+  name: String!
+  slug: String!
+  description: String!
+}
+
+input IndustryUpdateInput {
+  name: String
+  slug: String
+  description: String
+}
+
+input IndustriesInput {
+  page: Int! = 1
+  limit: Int! = 10
+  sort: IndustrySortEnum! = CREATED_AT_ASC
+  filter: IndustryFilter! = {}
+}
+
+enum IndustrySortEnum {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  NAME_ASC
+  NAME_DESC
+}
+
+input IndustryFilter {
+  name: String
+  slug: String
+  description: String
+}
+
+type IndustriesWithPagination {
+  items: [Industry!]!
+  pagination: Pagination!
+}

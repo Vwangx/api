@@ -1,0 +1,15 @@
+domain: api.mbunity.com
+slug: api-mbunity-com
+
+# MAX UPLOAD SIZE
+uploadSize: 5M
+
+image:
+  repository: gitlab.mbunity.io:5050/mbunity.com/api.mbunity.com
+  pullPolicy: IfNotPresent
+  name: api-mbunity-com
+  port: 3000
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

@@ -1,0 +1,39 @@
+type VacancyRequest {
+  id: ID!
+  name: String!
+  email: String!
+  phone: String
+  cvURL: String!
+}
+
+type VacancyRequestMutation {
+  create(input: VacancyRequestCreateInput!): VacancyRequest!
+  update(id: ID!, input: VacancyRequestUpdateInput! = {}): VacancyRequest!
+  delete(id: ID!): ID!
+}
+
+input VacancyRequestCreateInput {
+  name: String!
+  email: String!
+  phone: String
+  cvURL: String!
+}
+
+input VacancyRequestUpdateInput {
+  name: String
+  email: String
+  phone: String
+  cvURL: String
+}
+
+input VacancyRequestInput {
+  page: Int! = 1
+  limit: Int! = 10
+  sort: ClientSortEnum! = CREATED_AT_ASC
+  filter: ClientFilter! = {}
+}
+
+type VacancyRequestsWithPagination {
+  items: [VacancyRequest]
+  pagination: Pagination
+}

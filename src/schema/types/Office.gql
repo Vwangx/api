@@ -1,0 +1,65 @@
+type Office {
+  id: ID!
+  name: String!
+  description: String!
+  telephone: String
+  address: String
+  email: String!
+}
+
+type OfficeMutation {
+  create(input: OfficeCreateInput!): Office!
+  update(id: ID!, input: OfficeUpdateInput! = {}): Office!
+  delete(id: ID!): ID!
+}
+
+input OfficeCreateInput {
+  name: String!
+  description: String!
+  telephone: String
+  address: String
+  email: String!
+}
+
+input OfficeUpdateInput {
+  name: String
+  description: String
+  telephone: String
+  address: String
+  email: String
+}
+
+input OfficesInput {
+  page: Int! = 1
+  limit: Int! = 10
+  sort: OfficeSortEnum! = CREATED_AT_ASC
+  filter: OfficeFilter! = {}
+}
+
+enum OfficeSortEnum {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  NAME_ASC
+  NAME_DESC
+  ADDRESS_ASC
+  ADDRESS_DESC
+  EMAIL_ASC
+  EMAIL_DSC
+}
+
+input OfficeFilter {
+  id: ID
+  name: String
+  description: String
+  text: String
+  location: String
+  isActive: Boolean
+  IsHot: Boolean
+}
+
+type OfficesWithPagination {
+  items: [Office!]!
+  pagination: Pagination!
+}

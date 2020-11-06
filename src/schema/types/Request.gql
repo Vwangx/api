@@ -1,0 +1,39 @@
+type Request {
+  id: ID!
+  name: String!
+  email: String!
+  phone: String
+  message: String!
+}
+
+type RequestMutation {
+  create(input: RequestCreateInput!): Request!
+  update(id: ID!, input: RequestUpdateInput! = {}): Request!
+  delete(id: ID!): ID!
+}
+
+input RequestCreateInput {
+  name: String!
+  email: String!
+  phone: String
+  message: String!
+}
+
+input RequestUpdateInput {
+  name: String
+  email: String
+  phone: String
+  message: String
+}
+
+input RequestInput {
+  page: Int! = 1
+  limit: Int! = 10
+  sort: ClientSortEnum! = CREATED_AT_ASC
+  filter: ClientFilter! = {}
+}
+
+type RequestsWithPagination {
+  items: [Request]
+  pagination: Pagination
+}

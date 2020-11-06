@@ -1,0 +1,52 @@
+type Client {
+  id: ID!
+  name: String!
+  imageURL: String
+  websiteURL: String
+}
+
+type ClientMutation {
+  create(input: ClientCreateInput!): Client!
+  update(id: ID!, input: ClientUpdateInput! = {}): Client!
+  delete(id: [ID!]!): [ID!]!
+}
+
+input ClientCreateInput {
+  name: String!
+  imageURL: String
+  websiteURL: String
+}
+
+input ClientUpdateInput {
+  name: String
+  imageURL: String
+  websiteURL: String
+}
+
+input ClientsInput {
+  page: Int! = 1
+  limit: Int! = 10
+  sort: ClientSortEnum! = CREATED_AT_ASC
+  filter: ClientFilter! = {}
+}
+
+enum ClientSortEnum {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  NAME_ASC
+  NAME_DESC
+}
+
+input ClientFilter {
+  id: ID
+  name: String
+  imageURL: String
+  websiteURL: String
+}
+
+type ClientWithPagination {
+  items: [Client!]!
+  pagination: Pagination!
+}

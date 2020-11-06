@@ -1,0 +1,34 @@
+type Query {
+  user(id: ID!): User! @auth
+  users(input: UsersInput! = {}): UsersWithPagination @auth
+  currentUser: User! @auth
+
+  office(id: ID!): Office
+  offices(input: OfficesInput! = {}): OfficesWithPagination!
+
+  post(id: ID!): Post
+  posts(input: PostsInput! = {}): PostsWithPagination!
+
+  request(id: ID!): Request!
+  requests(input: RequestInput! = {}): RequestsWithPagination!
+
+  vacancyRequest(id: ID!): VacancyRequest!
+  vacancyRequests(input: VacancyRequestInput! = {}): VacancyRequestsWithPagination!
+
+  vacancy(id: ID!): Vacancy!
+  vacancies(input: VacanciesInput! = {}): VacanciesWithPagination!
+
+  client(id: ID!): Client!
+  clients(input: ClientsInput! = {}): ClientWithPagination!
+
+  technology(id: ID!): Technology!
+  technologies(input: TechnologiesInput! = {}): TechnologiesWithPagination!
+
+  caseStudy(id: ID!): CaseStudy!
+  caseStudies(input: CaseStudiesInput! = {}): CaseStudiesWithPagination!
+
+  industry(id: ID!): Industry!
+  industries(input: IndustriesInput! = {}): IndustriesWithPagination!
+
+  files: [File!]!
+}
